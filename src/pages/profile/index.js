@@ -5,40 +5,38 @@ import { toast } from "react-toastify";
 import { Input, message } from "antd";
 
 import { useState, useEffect } from "react";
+
 const Index = () => {
   const [newPassword, setNewPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const [passwordMatch, setPasswordMatch] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
 
-
   const admin = {
     name: "James William",
-    first: "James",
-    last: "Williams",
     email: "james@email.com",
     phone: "+91 65765767 6",
-    country: "USA",
+    dateOfBirth: "1990-01-01",
+    dateOfPassportExpiry: "2025-01-01",
     city: "New York",
-    postal: "5676877",
-    address: "333 St Paun, New York , USA",
-    password: "abcd123",
+    specialNotes: "Lorem ipsum dolor sit amet.",
+    passportCopy: "/path/to/passport/copy.jpg",
+    panCardCopy: "/path/to/pan/card/copy.jpg",
     about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
   };
 
   const [formData, setFormData] = useState({
-    firstName: admin.first,
-    lastName: admin.last,
+    name: admin.name,
     email: admin.email,
     phone: admin.phone,
-    country: admin.country,
+    dateOfBirth: admin.dateOfBirth,
+    dateOfPassportExpiry: admin.dateOfPassportExpiry,
     city: admin.city,
-    postal: admin.postal,
-    address: admin.address,
+    specialNotes: admin.specialNotes,
+    passportCopy: admin.passportCopy,
+    panCardCopy: admin.panCardCopy,
     about: admin.about,
-    password: admin.password
   });
-
 
   const [isFormEdited, setIsFormEdited] = useState(false);
 
@@ -58,28 +56,33 @@ const Index = () => {
       return;
     }
 
-
-
-    admin.first = formData.firstName;
-    admin.last = formData.lastName;
+    // Update admin object with new data
+    admin.name = formData.name;
     admin.email = formData.email;
     admin.phone = formData.phone;
-    admin.country = formData.country;
+    admin.dateOfBirth = formData.dateOfBirth;
+    admin.dateOfPassportExpiry = formData.dateOfPassportExpiry;
     admin.city = formData.city;
-    admin.postal = formData.postal;
-    admin.address = formData.address;
-    admin.password = formData.password
+    admin.specialNotes = formData.specialNotes;
+    admin.passportCopy = formData.passportCopy;
+    admin.panCardCopy = formData.panCardCopy;
+    admin.about = formData.about;
 
+    // Reset form data if needed
     setFormData({
-      firstName: admin.first,
-      lastName: admin.last,
+      name: admin.name,
       email: admin.email,
       phone: admin.phone,
-      country: admin.country,
+      dateOfBirth: admin.dateOfBirth,
+      dateOfPassportExpiry: admin.dateOfPassportExpiry,
       city: admin.city,
-      postal: admin.postal,
-      address: admin.address,
+      specialNotes: admin.specialNotes,
+      passportCopy: admin.passportCopy,
+      panCardCopy: admin.panCardCopy,
+      about: admin.about,
     });
+
+    setIsFormEdited(false);
   };
 
   const handlePasswordChange = (e) => {
@@ -99,29 +102,24 @@ const Index = () => {
     }
   }, [newPassword, repeatPassword]);
 
-
   const handlePasswordSubmit = (e) => {
     e.preventDefault();
 
     if (newPassword === repeatPassword) {
-      if ((newPassword !== "" || repeatPassword !== "")) {
+      if (newPassword !== "" || repeatPassword !== "") {
         admin.password = newPassword;
         setNewPassword("");
         setRepeatPassword("");
 
         message.success("Password updated successfully!");
-      }
-      else {
-        message.error("Please enter password to update")
+      } else {
+        message.error("Please enter password to update");
         return;
       }
-
     } else {
-
       message.error("Passwords do not match. Please try again.");
     }
   };
-
 
   return (
     <div className="w-full bg-[F9F9F9]">
@@ -130,39 +128,22 @@ const Index = () => {
       </Head>
       <div className="h-full w-full  my-4 overflow-hidden">
         <div className="w-full h-full flex flex-col-reverse  md:flex-row  bg-[#FFFFFF] shadow-sm rounded-md items-center  md:items-start md:justify-start my-5 md:px-6 px-4 md:px-0 ">
-
           <div className="w-full md:flex-row flex flex-col max-w-[100%] md:max-w-[80%]  my-5 md:my-0 sm:mx-4 gap-4">
             <div className="w-full  bg-[#FFFFFF]  py-5">
               <form className="my-3  px-6 pb-6" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label
-                      htmlFor="firstName"
+                      htmlFor="name"
                       className="text-[16px] font-normal text-[#777777]"
                     >
-                      First Name
+                      Name
                     </label>
                     <input
                       type="text"
-                      id="firstName"
-                      name="firstName"
-                      value={formData.firstName}
-                      onChange={handleChange}
-                      className="w-full py-2 px-3 border border-[#2668E81A] rounded transition duration-300 bg-[#2668E803] focus:outline-none focus:border-[#2668E855] hover:border-[#2668E855]"
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="lastName"
-                      className="text-[16px] font-normal text-[#777777]"
-                    >
-                      Last Name
-                    </label>
-                    <input
-                      type="text"
-                      id="lastName"
-                      name="lastName"
-                      value={formData.lastName}
+                      id="name"
+                      name="name"
+                      value={formData.name}
                       onChange={handleChange}
                       className="w-full py-2 px-3 border border-[#2668E81A] rounded transition duration-300 bg-[#2668E803] focus:outline-none focus:border-[#2668E855] hover:border-[#2668E855]"
                     />
@@ -188,7 +169,7 @@ const Index = () => {
                       htmlFor="phone"
                       className="text-[16px] font-normal text-[#777777]"
                     >
-                      Phone
+                      Contact Number
                     </label>
                     <input
                       type="tel"
@@ -201,37 +182,36 @@ const Index = () => {
                   </div>
                   <div>
                     <label
-                      htmlFor="password"
+                      htmlFor="dateOfBirth"
                       className="text-[16px] font-normal text-[#777777]"
                     >
-                      Password
+                      Date of Birth
                     </label>
                     <input
-                      type="password"
-                      id="password"
-                      name="password"
-                      value={formData.password}
+                      type="date"
+                      id="dateOfBirth"
+                      name="dateOfBirth"
+                      value={formData.dateOfBirth}
                       onChange={handleChange}
                       className="w-full py-2 px-3 border border-[#2668E81A] rounded transition duration-300 bg-[#2668E803] focus:outline-none focus:border-[#2668E855] hover:border-[#2668E855]"
                     />
                   </div>
                   <div>
                     <label
-                      htmlFor="password"
+                      htmlFor="dateOfPassportExpiry"
                       className="text-[16px] font-normal text-[#777777]"
                     >
-                      Confirm Password
+                      Date of Passport Expiry
                     </label>
                     <input
-                      type="password"
-                      id="password"
-                      name="password"
-                      value={formData.password}
+                      type="date"
+                      id="dateOfPassportExpiry"
+                      name="dateOfPassportExpiry"
+                      value={formData.dateOfPassportExpiry}
                       onChange={handleChange}
                       className="w-full py-2 px-3 border border-[#2668E81A] rounded transition duration-300 bg-[#2668E803] focus:outline-none focus:border-[#2668E855] hover:border-[#2668E855]"
                     />
                   </div>
-
                   <div>
                     <label
                       htmlFor="city"
@@ -250,23 +230,59 @@ const Index = () => {
                       <option value="New York">New York</option>
                     </select>
                   </div>
-                  <div className="w-full">
+                  
+
+                  <div>
                     <label
-                      htmlFor="postal"
+                      htmlFor="passportCopy"
                       className="text-[16px] font-normal text-[#777777]"
                     >
-                      Address
+                      Passport Copy
                     </label>
                     <input
-                      type="text"
-                      id="postal"
-                      name="postal"
-                      value={formData.address}
+                      type="file"
+                      id="passportCopy"
+                      name="passportCopy"
+                      value={formData.passportCopy}
+                      onChange={handleChange}
+                      className="w-full py-2 px-3 border border-[#2668E81A] rounded transition duration-300 bg-[#2668E803] focus:outline-none focus:border-[#2668E855] hover:border-[#2668E855]"
+                    />
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="panCardCopy"
+                      className="text-[16px] font-normal text-[#777777]"
+                    >
+                      PAN Card Copy
+                    </label>
+                    <input
+                      type="file"
+                      id="panCardCopy"
+                      name="panCardCopy"
+                      value={formData.panCardCopy}
                       onChange={handleChange}
                       className="w-full py-2 px-3 border border-[#2668E81A] rounded transition duration-300 bg-[#2668E803] focus:outline-none focus:border-[#2668E855] hover:border-[#2668E855]"
                     />
                   </div>
                 </div>
+                <div className="mt-3">
+                    <label
+                      htmlFor="specialNotes"
+                      className="text-[16px] font-normal text-[#777777]"
+                    >
+                      Special Notes
+                    </label>
+                    <textarea
+                      id="specialNotes"
+                      name="specialNotes"
+                      value={formData.specialNotes}
+                      placeholder="Write here..."
+                      onChange={handleChange}
+                      className="w-full py-2 px-3 border border-[#2668E81A] rounded transition duration-300 bg-[#2668E803] focus:outline-none focus:border-[#2668E855] hover:border-[#2668E855]"
+                      rows={4}
+                      style={{ resize: "none" }}
+                    />
+                  </div>
                 <div className="mt-4">
                   <label
                     htmlFor="about"
@@ -285,16 +301,14 @@ const Index = () => {
                     style={{ resize: "none" }}
                   />
                 </div>
-                <div className="w-full flex justify-start ">
+                <div className="w-full flex justify-start">
                   <button
                     type="submit"
                     className="mt-6 bg-[#ED6C0E] text-white py-2 px-4 rounded transition duration-300 hover:bg-[#E82494]"
                   >
-                    Save Chages
+                    Save Changes
                   </button>
-
                 </div>
-
               </form>
             </div>
           </div>
@@ -311,11 +325,8 @@ const Index = () => {
               >
                 Update Profile
               </button>
-
             </div>
-
           </div>
-
         </div>
       </div>
     </div>
