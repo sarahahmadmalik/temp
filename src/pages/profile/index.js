@@ -1,17 +1,20 @@
-"use client";
+// Import necessary libraries
 import Head from "next/head";
 import Image from "next/image";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import { Input, message } from "antd";
-
 import { useState, useEffect } from "react";
 
+// Define your functional component
 const Index = () => {
+  // State for form data
   const [newPassword, setNewPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const [passwordMatch, setPasswordMatch] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
 
+  // Admin data
   const admin = {
     name: "James William",
     email: "james@email.com",
@@ -25,6 +28,7 @@ const Index = () => {
     about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
   };
 
+  // State for form data
   const [formData, setFormData] = useState({
     name: admin.name,
     email: admin.email,
@@ -38,8 +42,10 @@ const Index = () => {
     about: admin.about,
   });
 
+  // State for form editing status
   const [isFormEdited, setIsFormEdited] = useState(false);
 
+  // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -49,6 +55,7 @@ const Index = () => {
     setIsFormEdited(true);
   };
 
+  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!isFormEdited) {
@@ -84,7 +91,20 @@ const Index = () => {
 
     setIsFormEdited(false);
   };
-
+  const handleChangeFile = (e) => {
+    const { name } = e.target;
+    const file = e.target.files[0];
+    
+    // Do something with the file, e.g., store it in state
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: file,
+    }));
+    
+    setIsFormEdited(true);
+  };
+  
+  // Handle password input changes
   const handlePasswordChange = (e) => {
     const { name, value } = e.target;
     if (name === "newPassword") {
@@ -94,6 +114,7 @@ const Index = () => {
     }
   };
 
+  // Check if passwords match
   useEffect(() => {
     if (newPassword === repeatPassword) {
       setPasswordMatch(true);
@@ -102,6 +123,7 @@ const Index = () => {
     }
   }, [newPassword, repeatPassword]);
 
+  // Handle password form submission
   const handlePasswordSubmit = (e) => {
     e.preventDefault();
 
@@ -121,11 +143,13 @@ const Index = () => {
     }
   };
 
+  // Return your JSX
   return (
     <div className="w-full bg-[F9F9F9]">
       <Head>
         <title>Profile</title>
       </Head>
+      <ToastContainer />
       <div className="h-full w-full  my-4 overflow-hidden">
         <div className="w-full h-full flex flex-col-reverse  md:flex-row  bg-[#FFFFFF] shadow-sm rounded-md items-center  md:items-start md:justify-start my-5 md:px-6 px-4 md:px-0 ">
           <div className="w-full md:flex-row flex flex-col max-w-[100%] md:max-w-[80%]  my-5 md:my-0 sm:mx-4 gap-4">
@@ -231,58 +255,27 @@ const Index = () => {
                     </select>
                   </div>
                   
-
-                  <div>
-                    <label
-                      htmlFor="passportCopy"
-                      className="text-[16px] font-normal text-[#777777]"
-                    >
-                      Passport Copy
-                    </label>
-                    <input
-                      type="file"
-                      id="passportCopy"
-                      name="passportCopy"
-                      value={formData.passportCopy}
-                      onChange={handleChange}
-                      className="w-full py-2 px-3 border border-[#2668E81A] rounded transition duration-300 bg-[#2668E803] focus:outline-none focus:border-[#2668E855] hover:border-[#2668E855]"
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="panCardCopy"
-                      className="text-[16px] font-normal text-[#777777]"
-                    >
-                      PAN Card Copy
-                    </label>
-                    <input
-                      type="file"
-                      id="panCardCopy"
-                      name="panCardCopy"
-                      value={formData.panCardCopy}
-                      onChange={handleChange}
-                      className="w-full py-2 px-3 border border-[#2668E81A] rounded transition duration-300 bg-[#2668E803] focus:outline-none focus:border-[#2668E855] hover:border-[#2668E855]"
-                    />
-                  </div>
+                 
+                  {/* Add other form fields */}
                 </div>
                 <div className="mt-3">
-                    <label
-                      htmlFor="specialNotes"
-                      className="text-[16px] font-normal text-[#777777]"
-                    >
-                      Special Notes
-                    </label>
-                    <textarea
-                      id="specialNotes"
-                      name="specialNotes"
-                      value={formData.specialNotes}
-                      placeholder="Write here..."
-                      onChange={handleChange}
-                      className="w-full py-2 px-3 border border-[#2668E81A] rounded transition duration-300 bg-[#2668E803] focus:outline-none focus:border-[#2668E855] hover:border-[#2668E855]"
-                      rows={4}
-                      style={{ resize: "none" }}
-                    />
-                  </div>
+                  <label
+                    htmlFor="specialNotes"
+                    className="text-[16px] font-normal text-[#777777]"
+                  >
+                    Special Notes
+                  </label>
+                  <textarea
+                    id="specialNotes"
+                    name="specialNotes"
+                    value={formData.specialNotes}
+                    placeholder="Write here..."
+                    onChange={handleChange}
+                    className="w-full py-2 px-3 border border-[#2668E81A] rounded transition duration-300 bg-[#2668E803] focus:outline-none focus:border-[#2668E855] hover:border-[#2668E855]"
+                    rows={4}
+                    style={{ resize: "none" }}
+                  />
+                </div>
                 <div className="mt-4">
                   <label
                     htmlFor="about"
@@ -327,6 +320,7 @@ const Index = () => {
               </button>
             </div>
           </div>
+       
         </div>
       </div>
     </div>
