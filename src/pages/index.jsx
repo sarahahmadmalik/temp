@@ -348,6 +348,7 @@ const Index = () => {
     setShowActions(false);
     setShowModifyModal(true);
   };
+  
 
   const handleModifyToggle = (orderId) => {
     setSelectedOrderId(orderId);
@@ -489,7 +490,7 @@ const Index = () => {
       <div className="w-full px-3 lg:max-h-[90px] max-h-[100px] py-0 h-full border-b border-[#DFDFDF]">
 
 <div className="grid grid-cols-[5fr_5fr_2fr] h-full px-2 w-full flex-wrap py-0">
-  <div className="flex justify-between items-center px-4 h-full overflow-x-scroll border-r-solid border-r-[1px] border-r-[#00000038] text-[#777777]">
+  <div className="sm:flex sm:flex-row hidden justify-between items-center px-4 h-full overflow-x-scroll border-r-solid border-r-[1px] border-r-[#00000038] text-[#777777]">
     {/* Buttons for filtering */}
     <div className="flex flex-wrap">
       <button
@@ -544,7 +545,7 @@ const Index = () => {
     </div>
   </div>
 
-  <div className="flex flex-wrap border-r-solid overflow-x-scroll border-r-[1px] gap-x-2 border-r-[#00000038] self-center justify-center px-4 h-full items-center">
+  <div className="sm:flex sm:flex-row hidden flex-wrap border-r-solid overflow-x-scroll border-r-[1px] gap-x-2 border-r-[#00000038] self-center justify-center px-4 h-full items-center">
     {/* Date pickers */}
     <div className="flex flex-wrap items-center">
       <p>From</p>
@@ -556,11 +557,11 @@ const Index = () => {
     </div>
   </div>
 
-  <div className="flex flex-wrap justify-center px-4 items-center">
+  <div className="flex w-full sm:w-auto  justify-center px-4 items-center">
     {/* Add button */}
     <Button
       type="primary"
-      className="w-full flex justify-between items-center max-w-[180px] w-full mb-4 sm:mb-0"
+      className="w-full flex justify-between items-center sm:max-w-[180px] mb-4 sm:mb-0"
       onClick={handleOrderModal}
       icon={<Image src={'/filter.svg'} width={18} height={18} />}
       style={{
@@ -579,23 +580,31 @@ const Index = () => {
 </div>
 </div>
 
-        <div>
-
-
-          {/* Table */}
-
-          <Table
-            // loading={isLoading}
-            columns={columns}
-            dataSource={orders}
-            pagination={{ defaultPageSize: 4 }}
-            // className="table"
-            scroll={{ x: 1000 }}
-          />
-
-
-
+<div>
+       
+        
+            <div className="grid grid-cols-1 gap-4 md:hidden">
+              {filteredOrders.map((order) => (
+                <div key={order.id} className="bg-white shadow-md rounded-md p-4">
+                  <h3 className="text-lg font-semibold">{order.customer}</h3>
+                  <p>{order.orderDate}</p>
+                  <p className={`${getStatusStyle(order.status)}`}>{order.status}</p>
+                  {/* Add other fields as needed */}
+                </div>
+              ))}
+            </div>
+       
+          
+            <Table
+              columns={columns}
+              dataSource={orders}
+              pagination={{ defaultPageSize: 4 }}
+              scroll={{ x: 1000 }}
+              className="hidden md:block"
+            />
+        
         </div>
+
 
         <EditModal
           visible={showModifyModal}
