@@ -486,94 +486,98 @@ const Index = () => {
         <title>Orders</title>
       </Head>
       <div className="h-full w-full my-4  py-0 bg-[#FFFFFF] rounded-md">
-        <div className="w-full px-3 flex justify-center items-center  lg:max-h-[64px] max-h-[84px] py-0 h-full border-b border-[#DFDFDF]">
+      <div className="w-full px-3 lg:max-h-[90px] max-h-[100px] py-0 h-full border-b border-[#DFDFDF]">
 
-          <div className="grid grid-cols-[5fr_5fr_2fr] h-full px-2 w-full flex-wrap py-0  ">
+<div className="grid grid-cols-[5fr_5fr_2fr] h-full px-2 w-full flex-wrap py-0">
+  <div className="flex justify-between items-center px-4 h-full overflow-x-scroll border-r-solid border-r-[1px] border-r-[#00000038] text-[#777777]">
+    {/* Buttons for filtering */}
+    <div className="flex flex-wrap">
+      <button
+        className={`uppercase font-[500] flex justify-center items-center h-full mr-3 border-b-solid ${activeButton === "All" ? "border-b-[#ED6C0E]" : "border-b-transparent"
+          } border-b-[2px] ${activeButton === "All" ? "text-[#ED6C0E]" : ""
+          }`}
+        onClick={() => {
+          setActiveButton("All");
+          setFilteredOrders(orders);
+        }}>
+        All
+      </button>
+      <button
+        className={`uppercase font-[500] flex justify-center items-center h-full mr-3 border-b-solid ${activeButton === "Delivered" ? "border-b-[#ED6C0E]" : "border-b-transparent"
+          } border-b-[2px] ${activeButton === "Delivered" ? "text-[#ED6C0E]" : ""
+          }`}
+        onClick={() => {
+          setActiveButton("Delivered");
+          const deliveredOrders = orders.filter(
+            (order) => order.status === "Completed",
+          );
+          setFilteredOrders(deliveredOrders);
+        }}>
+        Confirmed
+      </button>
+      <button
+        className={`uppercase font-[500] flex justify-center items-center h-full mr-3 border-b-solid ${activeButton === "PickUp" ? "border-b-[#ED6C0E]" : "border-b-transparent"
+          } border-b-[2px] ${activeButton === "PickUp" ? "text-[#ED6C0E]" : ""
+          }`}
+        onClick={() => {
+          setActiveButton("PickUp");
+          const pickupOrders = orders.filter(
+            (order) => order.status === "In Progress",
+          );
+          setFilteredOrders(pickupOrders);
+        }}>
+        Pending
+      </button>
+      <button
+        className={`uppercase font-[500] flex justify-center items-center h-full border-b-solid ${activeButton === "Cancelled" ? "border-b-[#ED6C0E]" : "border-b-transparent"
+          } border-b-[2px] mr-3 ${activeButton === "Cancelled" ? "text-[#ED6C0E]" : ""
+          }`}
+        onClick={() => {
+          setActiveButton("Cancelled");
+          const cancelledOrders = orders.filter(
+            (order) => order.status === "Cancelled",
+          );
+          setFilteredOrders(cancelledOrders);
+        }}>
+        Cancelled
+      </button>
+    </div>
+  </div>
 
-            <div className="flex justify-between  items-center px-4 h-full overflow-x-scroll border-r-solid border-r-[1px] border-r-[#00000038] text-[#777777]">
-              <button
-                className={`uppercase font-[500] flex justify-center  items-center h-full mr-3 border-b-solid ${activeButton === "All" ? "border-b-[#ED6C0E]" : "border-b-transparent"
-                  }  border-b-[2px] ${activeButton === "All" ? "text-[#ED6C0E]" : ""
-                  }`}
-                onClick={() => {
-                  setActiveButton("All");
-                  setFilteredOrders(orders);
-                }}>
-                All
-              </button>
-              <button
-                className={`uppercase font-[500]  flex justify-center  items-center h-full mr-3 border-b-solid ${activeButton === "Delivered" ? "border-b-[#ED6C0E]" : "border-b-transparent"
-                  }  border-b-[2px] ${activeButton === "Delivered" ? "text-[#ED6C0E]" : ""
-                  }`}
-                onClick={() => {
-                  setActiveButton("Delivered");
-                  const deliveredOrders = orders.filter(
-                    (order) => order.status === "Completed",
-                  );
-                  setFilteredOrders(deliveredOrders);
-                }}>
-                Confirmed
-              </button>
-              <button
-                className={`uppercase font-[500] flex justify-center  items-center  h-full mr-3 border-b-solid ${activeButton === "PickUp" ? "border-b-[#ED6C0E]" : "border-b-transparent"
-                  }  border-b-[2px] ${activeButton === "PickUp" ? "text-[#ED6C0E]" : ""
-                  }`}
-                onClick={() => {
-                  setActiveButton("PickUp");
-                  const pickupOrders = orders.filter(
-                    (order) => order.status === "In Progress",
-                  );
-                  setFilteredOrders(pickupOrders);
-                }}>
-                Pending
-              </button>
-              <button
-                className={`uppercase font-[500] flex justify-center  items-center  h-full border-b-solid ${activeButton === "Cancelled" ? "border-b-[#ED6C0E]" : "border-b-transparent"
-                  }  border-b-[2px] mr-3 ${activeButton === "Cancelled" ? "text-[#ED6C0E]" : ""
-                  }`}
-                onClick={() => {
-                  setActiveButton("Cancelled");
-                  const cancelledOrders = orders.filter(
-                    (order) => order.status === "Cancelled",
-                  );
-                  setFilteredOrders(cancelledOrders);
-                }}>
-                Cancelled
-              </button>
-            </div>
-            <div className="flex border-r-solid overflow-x-scroll border-r-[1px] gap-x-2 border-r-[#00000038] self-center justify-center px-4 h-full items-center">
-              <div className="flex items-center gap-x-2">
-                <p>From</p>
-                <DatePicker className="w-full h-[40px]" />
-              </div>
-              <div className="flex  items-center gap-x-2">
-                <p>To</p>
-                <DatePicker className="w-full h-[40px]" />
-              </div>
+  <div className="flex flex-wrap border-r-solid overflow-x-scroll border-r-[1px] gap-x-2 border-r-[#00000038] self-center justify-center px-4 h-full items-center">
+    {/* Date pickers */}
+    <div className="flex flex-wrap items-center">
+      <p>From</p>
+      <DatePicker className="w-full h-[40px]" />
+    </div>
+    <div className="flex flex-wrap items-center">
+      <p>To</p>
+      <DatePicker className="w-full h-[40px]" />
+    </div>
+  </div>
 
-            </div>
-            <div className="flex justify-center px-4 items-center">
-              <Button
-                type="primary"
-                className=" w-full flex justify-between items-center  max-w-[180px] w-full mb-4 sm:mb-0"
-                onClick={handleOrderModal}
-                icon={<Image src={'/filter.svg'} width={18} height={18} />}
-                style={{
-                  backgroundColor: "#08A122",
-                  color: "#FFFFFF",
-                  borderRadius: "8px",
-                  height: "45px",
-                }}>
-                 Add
-              </Button>
-            </div>
-          </div>
+  <div className="flex flex-wrap justify-center px-4 items-center">
+    {/* Add button */}
+    <Button
+      type="primary"
+      className="w-full flex justify-between items-center max-w-[180px] w-full mb-4 sm:mb-0"
+      onClick={handleOrderModal}
+      icon={<Image src={'/filter.svg'} width={18} height={18} />}
+      style={{
+        backgroundColor: "#08A122",
+        color: "#FFFFFF",
+        borderRadius: "8px",
+        height: "45px",
+      }}>
+      Add
+    </Button>
+  </div>
+</div>
 
-          <div>
-            <div></div>
-          </div>
-        </div>
-
+<div>
+  <div></div>
+</div>
+</div>
 
         <div>
 
