@@ -403,6 +403,24 @@ const Index = () => {
         setSelectedProductId(selectedProduct);
         handleDeleteConfirmation();
     };
+     const renderCardView = () => {
+    return filteredProducts.map((product) => (
+      <div
+        key={product.id}
+        className="card"
+        style={{ marginBottom: "16px", cursor: "pointer" }}
+        onClick={() => handleCardClick(product)}
+      >
+        <Image src={product.image} width={100} height={100} alt={product.name} />
+        <div>
+          <h3>{product.name}</h3>
+          <p>{product.status}</p>
+          <p>Price: {product.price}</p>
+        </div>
+        {/* Add other card details as needed */}
+      </div>
+    ));
+  };
 
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
     const endIndex = startIndex + ITEMS_PER_PAGE;
@@ -541,16 +559,18 @@ const Index = () => {
                     </div> */}
                 </div>
                 <div>
-                    {/* Table */}
-
-                    <Table
-                        // loading={isLoading}
-                        columns={columns}
-                        dataSource={products}
-                        pagination={{ defaultPageSize: 4 }}
-                        // className="table"
-                        scroll={{ x: 1000 }}
-                    />
+                     <div className="flex flex-col md:hidden" style={{ display: "flex", flexWrap: "wrap", padding: "16px" }}>
+              {renderCardView()}
+            </div>
+        
+         
+            <Table
+              columns={columns}
+              dataSource={products}
+              pagination={{ defaultPageSize: 4 }}
+              scroll={{ x: 1000 }}
+              className="hidden md:block"
+            />
 
                 </div>
 
