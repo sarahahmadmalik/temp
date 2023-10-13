@@ -7,7 +7,7 @@ import Image from "next/image";
 
 const { Sider } = Layout;
 
-const Sidebar = ({ role }) => {
+const Sidebar = ({ role, handleLogout }) => {
   const router = useRouter();
   const [current, setCurrent] = useState(router.pathname);
 
@@ -114,7 +114,7 @@ const Sidebar = ({ role }) => {
         <p className="text-[#0000009C] text-[14px]">User77@email.com</p>
         <Button
           type="text"
-          onClick={()=>router.push('/login')}
+          onClick={handleLogout}
           className="flex items-center mt-3 font-[16px] text-[500] bg-[#000000] w-full flex justify-center items-center font-poppins text-[#FFFFFF] mt-auto mb-2"
         >
           Log Out

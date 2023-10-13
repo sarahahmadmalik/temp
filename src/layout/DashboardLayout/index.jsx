@@ -58,35 +58,35 @@ const Index = ({ children }) => {
                 icon={<Image src="/images/order.svg" alt="orders-icon" width={17} height={17} />}
                 onClick={handleMenuClick}>
                 <Link href="/">
-                    Orders
+                    Booking
                 </Link>
             </Menu.Item>
             <Menu.Item key="Products"
                 icon={<Image src="/images/products.svg" alt="products" width={17} height={17} />}
                 onClick={handleMenuClick}>
-                <Link href="/products">
-                    Products
+                <Link href="/query">
+                    Query
                 </Link>
             </Menu.Item>
             <Menu.Item key="Buyers"
                 icon={<Image src="/images/buyer.svg" alt="buyers" width={17} height={17} />}
                 onClick={handleMenuClick}>
-                <Link href="/buyers">
-                    Buyers
+                <Link href="/packages">
+                    Packages
                 </Link>
             </Menu.Item>
             <Menu.Item key="Sellers"
                 icon={<Image src="/images/sellers.svg" alt="sellers" width={17} height={17} />}
                 onClick={handleMenuClick}>
-                <Link href="/sellers">
-                    Sellers
+                <Link href="/users">
+                    User Listing
                 </Link>
             </Menu.Item>
             <Menu.Item key="Earning"
                 icon={<Image src="/images/earnings.svg" alt="earning" width={17} height={17} />}
                 onClick={handleMenuClick}>
-                <Link href="/earning">
-                    Earning
+                <Link href="/deals">
+                    Deals
                 </Link>
             </Menu.Item>
             <Menu.Item key="Profile"

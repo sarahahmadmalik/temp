@@ -262,14 +262,14 @@ const Index = () => {
       </Head>
       <div className="h-full w-full my-4 py-3   bg-[#FFFFFF] rounded-md">
 
-        <div className="flex justify-between px-4 pb-[0px] items-center  h-full overflow-x-scroll border-b-solid border-b-[1px] max-h-[52px] h-full border-b-[#00000038] text-[#777777]">
+        <div className="flex justify-between px-4 pb-[0px] items-center  h-full overflow-x-scroll border-b-solid border-b-[1px] max-h-[100px] lg:max-h-[52px] h-full border-b-[#00000038] text-[#777777]">
           <h1 className="text-[#1B2430] font-semibold text-[24px]">
             Add New Package
           </h1>
 
         </div>
 
-        <div className="flex justify-between px-4 pb-[0px] items-center  h-full overflow-x-scroll border-b-solid border-b-[1px] max-h-[52px] h-full border-b-[#00000038] text-[#777777]">
+        <div className="flex justify-between px-4 pb-[0px] items-center  h-full overflow-x-scroll border-b-solid border-b-[1px] max-h-[100px] lg:max-h-[52px] h-full border-b-[#00000038] text-[#777777]">
           <button
             className={`uppercase mb-0 pb-0 font-[500] flex justify-center  items-center h-full mr-3 border-b-solid ${activeButton === "Packages" ? "border-b-[#ED6C0E]" : "border-b-transparent"
               }  border-b-[2px] ${activeButton === "Packages" ? "text-[#ED6C0E]" : "text-[#363B49]"
@@ -331,42 +331,45 @@ const Index = () => {
 
 
         <div className="py-4 px-4">
-          {activeButton === "Packages" &&
-            (
-              <table className="min-w-full divide-y divide-gray-200 shadow-md bg-white rounded-lg overflow-hidden">
+          {activeButton === "Packages" && (
+            <div className="overflow-x-auto">
+              <table className="w-full divide-y divide-gray-200 shadow-md bg-white rounded-lg overflow-hidden">
                 <thead className="bg-gray-100">
                   <tr>
                     <th
                       scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      className="px-4 py-3 sm:px-6 sm:py-3 text-left text-xs sm:text-base font-medium text-gray-500  tracking-wider"
                     >
                       Package Name
                     </th>
                     <th
                       scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      className="px-4 py-3 sm:px-6 sm:py-3 text-left text-xs sm:text-base font-medium text-gray-500  tracking-wider"
                     >
                       Tags (Destination, Package Theme)
                     </th>
                     <th
                       scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      className="px-4 py-3 sm:px-6 sm:py-3 text-left text-xs sm:text-base font-medium text-gray-500  tracking-wider"
                     >
                       Travel Date Validity
                     </th>
                     <th
                       scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      className="px-4 py-3 sm:px-6 sm:py-3 text-left text-xs sm:text-base font-medium text-gray-500  tracking-wider"
                     >
                       Booking Date Validity
                     </th>
                     <th
                       scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      className="px-4 py-3 sm:px-6 sm:py-3 text-left text-xs sm:text-base font-medium text-gray-500  tracking-wider"
                     >
                       Price/Cost per head
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th
+                      scope="col"
+                      className="px-4 py-3 sm:px-6 sm:py-3 text-left text-xs sm:text-base font-medium text-gray-500  tracking-wider"
+                    >
                       Actions
                     </th>
                   </tr>
@@ -374,75 +377,59 @@ const Index = () => {
                 <tbody>
                   {/* Add your package data here */}
                   <tr className="bg-white">
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Package 1</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Tag 1, Tag 2</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2023-10-01</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2023-09-15</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$500</td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-4 py-4 sm:px-6 sm:py-4 whitespace-nowrap text-sm sm:text-base text-gray-900">Package 1</td>
+                    <td className="px-4 py-4 sm:px-6 sm:py-4 whitespace-nowrap text-sm sm:text-base text-gray-900">Tag 1, Tag 2</td>
+                    <td className="px-4 py-4 sm:px-6 sm:py-4 whitespace-nowrap text-sm sm:text-base text-gray-900">2023-10-01</td>
+                    <td className="px-4 py-4 sm:px-6 sm:py-4 whitespace-nowrap text-sm sm:text-base text-gray-900">2023-09-15</td>
+                    <td className="px-4 py-4 sm:px-6 sm:py-4 whitespace-nowrap text-sm sm:text-base text-gray-900">$500</td>
+                    <td className="px-4 py-4 sm:px-6 sm:py-4 whitespace-nowrap">
                       <div className="flex items-center justify-center gap-x-4 ">
-                        <div className="flex text-[#000000]  tex-[16px] font-medium items-center justify-center gap-x-2">
+                        <div className="flex text-[#000000] tex-[16px] sm:text-base font-medium items-center justify-center gap-x-2">
                           <Image src={'/delete.svg'} width={18} height={20} />
-
                           Delete
                         </div>
                       </div>
                     </td>
                   </tr>
                   <tr className="bg-white">
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Package 1</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Tag 1, Tag 2</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2023-10-01</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2023-09-15</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$500</td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-4 py-4 sm:px-6 sm:py-4 whitespace-nowrap text-sm sm:text-base text-gray-900">Package 1</td>
+                    <td className="px-4 py-4 sm:px-6 sm:py-4 whitespace-nowrap text-sm sm:text-base text-gray-900">Tag 1, Tag 2</td>
+                    <td className="px-4 py-4 sm:px-6 sm:py-4 whitespace-nowrap text-sm sm:text-base text-gray-900">2023-10-01</td>
+                    <td className="px-4 py-4 sm:px-6 sm:py-4 whitespace-nowrap text-sm sm:text-base text-gray-900">2023-09-15</td>
+                    <td className="px-4 py-4 sm:px-6 sm:py-4 whitespace-nowrap text-sm sm:text-base text-gray-900">$500</td>
+                    <td className="px-4 py-4 sm:px-6 sm:py-4 whitespace-nowrap">
                       <div className="flex items-center justify-center gap-x-4 ">
-                        <button className="flex text-[#000000]  tex-[16px] font-medium items-center justify-center gap-x-2">
+                        <div className="flex text-[#000000] tex-[16px] sm:text-base font-medium items-center justify-center gap-x-2">
                           <Image src={'/delete.svg'} width={18} height={20} />
-                          Delete
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr className="bg-white">
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Package 1</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Tag 1, Tag 2</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2023-10-01</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2023-09-15</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$500</td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="flex items-center justify-center gap-x-4 ">
-                        <div className="flex text-[#000000]  tex-[16px] font-medium items-center justify-center gap-x-2">
-                          <Image src={'/delete.svg'} width={18} height={20} />
-
                           Delete
                         </div>
                       </div>
                     </td>
                   </tr>
                   <tr className="bg-white">
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Package 1</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Tag 1, Tag 2</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2023-10-01</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2023-09-15</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$500</td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-4 py-4 sm:px-6 sm:py-4 whitespace-nowrap text-sm sm:text-base text-gray-900">Package 1</td>
+                    <td className="px-4 py-4 sm:px-6 sm:py-4 whitespace-nowrap text-sm sm:text-base text-gray-900">Tag 1, Tag 2</td>
+                    <td className="px-4 py-4 sm:px-6 sm:py-4 whitespace-nowrap text-sm sm:text-base text-gray-900">2023-10-01</td>
+                    <td className="px-4 py-4 sm:px-6 sm:py-4 whitespace-nowrap text-sm sm:text-base text-gray-900">2023-09-15</td>
+                    <td className="px-4 py-4 sm:px-6 sm:py-4 whitespace-nowrap text-sm sm:text-base text-gray-900">$500</td>
+                    <td className="px-4 py-4 sm:px-6 sm:py-4 whitespace-nowrap">
                       <div className="flex items-center justify-center gap-x-4 ">
-                        <div className="flex text-[#000000]  tex-[16px] font-medium items-center justify-center gap-x-2">
+                        <div className="flex text-[#000000] tex-[16px] sm:text-base font-medium items-center justify-center gap-x-2">
                           <Image src={'/delete.svg'} width={18} height={20} />
-
                           Delete
                         </div>
                       </div>
                     </td>
                   </tr>
-                  {/* Add more rows as needed */}
+                  <tr className="bg-white">
+                    {/* Add more rows as needed */}
+                  </tr>
                 </tbody>
               </table>
+            </div>
+          )}
 
-            )
-          }
-        
+
           {/* About Hotel */}
 
           {
