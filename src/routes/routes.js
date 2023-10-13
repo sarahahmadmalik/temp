@@ -7,6 +7,12 @@ const routes = [
     title: "Booking",
     roles: ["admin", "user"],
   },
+  {
+    path: "/query",
+    icon: <Image src="/users.svg" alt="orders-icon" width={24} height={24} />,
+    title: "Query",
+    roles: ["admin", "user"],
+  },
   // {
   //   path: "/products",
   //   icon: <Image src="/images/products.svg" alt="products" width={24} height={24} />,

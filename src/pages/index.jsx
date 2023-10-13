@@ -278,15 +278,18 @@ const Index = () => {
     {
       title: (
         <div className="flex items-center space-x-4">
-          <span className="text-base font-lato font-medium">STATUS</span>
+          <span className="text-base font-lato font-medium">Status</span>
         </div>
       ),
       dataIndex: "desc",
+      width: 100,
       sorter: (a, b) => a.age - b.age,
       render: (_, record) => (
-        <div className="w-full">
-          <span style={getStatusStyle(record.status)}
-            className="rounded-md px-2 py-1 text-[14px] font-[400] text-center">
+        <div className="w-full" style={{ width: "100px" }}>
+          <span
+            style={getStatusStyle(record.status)}
+            className="rounded-md px-2 py-1 text-[14px] font-[400] text-center"
+          >
             {record.status}
           </span>
         </div>
@@ -478,12 +481,12 @@ const Index = () => {
   };
 
   return (
-    <div className="w-full h-full bg-[F9F9F9] px-4 ">
+    <div className="w-full h-full bg-[F9F9F9] px-4 lg:py-0 mt-16">
       <Head>
         <title>Orders</title>
       </Head>
       <div className="h-full w-full my-4  py-0 bg-[#FFFFFF] rounded-md">
-        <div className="w-full px-3 flex justify-center items-center  max-h-[64px] py-0 h-full border-b border-[#DFDFDF]">
+        <div className="w-full px-3 flex justify-center items-center  lg:max-h-[64px] max-h-[84px] py-0 h-full border-b border-[#DFDFDF]">
 
           <div className="grid grid-cols-[5fr_5fr_2fr] h-full px-2 w-full flex-wrap py-0  ">
 
@@ -561,7 +564,7 @@ const Index = () => {
                   borderRadius: "8px",
                   height: "45px",
                 }}>
-                Sort By
+                 Add
               </Button>
             </div>
           </div>

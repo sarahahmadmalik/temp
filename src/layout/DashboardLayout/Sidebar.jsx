@@ -64,7 +64,7 @@ const Sidebar = ({ role }) => {
                 ) : (
                   <Link
                     href={route.path}
-                    className={`font-normal text-base  font-poppins ${current === route.path ? "text-white" : "text-white"
+                    className={`font-normal text-base font-poppins group ${current === route.path ? "text-white" : "text-white"
                       }`}
                   >
                     {route.title}
@@ -88,7 +88,7 @@ const Sidebar = ({ role }) => {
                     label: (
                       <Link
                         href={child.path}
-                        className={`font-normal text-base  font-poppins ${current === child.path ? "text-white" : "text-white"
+                        className={`font-normal text-base font-poppins group ${current === child.path ? "text-white" : "text-white"
                           }`}
                       >
                         {child.title}
@@ -114,23 +114,12 @@ const Sidebar = ({ role }) => {
         <p className="text-[#0000009C] text-[14px]">User77@email.com</p>
         <Button
           type="text"
-
+          onClick={()=>router.push('/login')}
           className="flex items-center mt-3 font-[16px] text-[500] bg-[#000000] w-full flex justify-center items-center font-poppins text-[#FFFFFF] mt-auto mb-2"
-        // icon={
-        //   <Image
-        //     src={"/images/logout.svg"}
-        //     alt="Logout"
-        //     width={16}
-        //     height={16}
-        //   />
-        // }
         >
           Log Out
         </Button>
       </div>
-
-
-
     </Sider>
   );
 };

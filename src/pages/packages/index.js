@@ -252,7 +252,7 @@ const Index = () => {
   const onFinish = (values) => {
     console.log('Form values:', values);
   };
-  const [myArray, setMyArray] = useState([1, 2]);
+  const [myArray, setMyArray] = useState([1]);
   console.log("ARRAY", myArray)
 
   return (
@@ -266,20 +266,19 @@ const Index = () => {
           <h1 className="text-[#1B2430] font-semibold text-[24px]">
             Add New Package
           </h1>
-          <div className="flex items-center justify-center gap-x-4 ">
-            <div className="flex text-[#000000]  tex-[16px] font-medium items-center justify-center gap-x-2">
-              <Image src={'/edit.svg'} width={16} height={20} />
-              Edit
-            </div>
-            <div className="flex text-[#000000]  tex-[16px] font-medium items-center justify-center gap-x-2">
-              <Image src={'/delete.svg'} width={18} height={20} />
 
-              Delete
-            </div>
-          </div>
         </div>
 
         <div className="flex justify-between px-4 pb-[0px] items-center  h-full overflow-x-scroll border-b-solid border-b-[1px] max-h-[52px] h-full border-b-[#00000038] text-[#777777]">
+          <button
+            className={`uppercase mb-0 pb-0 font-[500] flex justify-center  items-center h-full mr-3 border-b-solid ${activeButton === "Packages" ? "border-b-[#ED6C0E]" : "border-b-transparent"
+              }  border-b-[2px] ${activeButton === "Packages" ? "text-[#ED6C0E]" : "text-[#363B49]"
+              }`}
+            onClick={() => {
+              setActiveButton("Packages");
+            }}>
+            Packages
+          </button>
           <button
             className={`uppercase mb-0 pb-0 font-[500] flex justify-center  items-center h-full mr-3 border-b-solid ${activeButton === "About" ? "border-b-[#ED6C0E]" : "border-b-transparent"
               }  border-b-[2px] ${activeButton === "About" ? "text-[#ED6C0E]" : "text-[#363B49]"
@@ -332,7 +331,120 @@ const Index = () => {
 
 
         <div className="py-4 px-4">
+          {activeButton === "Packages" &&
+            (
+              <table className="min-w-full divide-y divide-gray-200 shadow-md bg-white rounded-lg overflow-hidden">
+                <thead className="bg-gray-100">
+                  <tr>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Package Name
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Tags (Destination, Package Theme)
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Travel Date Validity
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Booking Date Validity
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Price/Cost per head
+                    </th>
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Actions
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {/* Add your package data here */}
+                  <tr className="bg-white">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Package 1</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Tag 1, Tag 2</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2023-10-01</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2023-09-15</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$500</td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="flex items-center justify-center gap-x-4 ">
+                        <div className="flex text-[#000000]  tex-[16px] font-medium items-center justify-center gap-x-2">
+                          <Image src={'/delete.svg'} width={18} height={20} />
+
+                          Delete
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr className="bg-white">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Package 1</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Tag 1, Tag 2</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2023-10-01</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2023-09-15</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$500</td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="flex items-center justify-center gap-x-4 ">
+                        <button className="flex text-[#000000]  tex-[16px] font-medium items-center justify-center gap-x-2">
+                          <Image src={'/delete.svg'} width={18} height={20} />
+                          Delete
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr className="bg-white">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Package 1</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Tag 1, Tag 2</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2023-10-01</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2023-09-15</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$500</td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="flex items-center justify-center gap-x-4 ">
+                        <div className="flex text-[#000000]  tex-[16px] font-medium items-center justify-center gap-x-2">
+                          <Image src={'/delete.svg'} width={18} height={20} />
+
+                          Delete
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr className="bg-white">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Package 1</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Tag 1, Tag 2</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2023-10-01</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2023-09-15</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$500</td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="flex items-center justify-center gap-x-4 ">
+                        <div className="flex text-[#000000]  tex-[16px] font-medium items-center justify-center gap-x-2">
+                          <Image src={'/delete.svg'} width={18} height={20} />
+
+                          Delete
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  {/* Add more rows as needed */}
+                </tbody>
+              </table>
+
+            )
+          }
+        
           {/* About Hotel */}
+
           {
             activeButton === "About" && <Form onFinish={onFinish}>
               <div className="flex flex-col md:flex-row justify-between w-full items-center gap-x-4 ">
@@ -408,11 +520,6 @@ const Index = () => {
                     <Option value="4 Star">4 Star</Option>
                     {/* Add more options */}
                   </Select>              </Form.Item>
-
-
-
-
-
                 <Form.Item className="h-[50px]  w-full" initialValue={"Add Special Notes"} name="AddSpecialNotes" label="">
                   <Input className="h-[50px] w-full" placeholder="Add Special Notes" />
                 </Form.Item>
@@ -575,7 +682,7 @@ const Index = () => {
           }
           {
             activeButton === "Galleries" && (<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {[1, 2, 3, 4, 5, 6].map((index) => {
+              {[1, 2, 3].map((index) => {
                 return <a href="#" key={index} class="flex flex-col items-center max-w-[500px] w-full min-h-[400px] h-full  bg-white border border-gray-200 rounded-lg shadow  w-full ">
                   <img class="object-cover w-full rounded-t-lg w-full h-full rounded-lg " src="/dom.png" alt="" />
                   <div class="flex flex-col justify-between p-4 leading-normal">

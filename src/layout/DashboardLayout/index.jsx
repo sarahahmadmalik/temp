@@ -206,7 +206,7 @@ const Index = ({ children }) => {
                                     className="flex items-center justify-center bg-[#0852C1] cursor-pointer rounded-full" />
                             </div>
                             <div className="flex flex-col justify-center h-full">
-                                <h6 className="text-[#000000]  font-normal text-[14px]">James Williams</h6>
+                                <h6 className="text-[#000000]  font-normal text-[14px]">James</h6>
                                 {/* <h6 className="text-[#0000009C] ">Admin</h6> */}
                             </div>
 
